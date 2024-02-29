@@ -1,0 +1,869 @@
+openapi: 3.0.3
+info:
+  title: OPEN API intelliQ
+  description: OpenAPI 3 Documentation about intelliQ application.
+  version: 1.0.0
+paths:
+  /action:
+    post:
+      operationId: rEST_Service
+      responses:
+        200:
+          description: OK
+  '{baseURL}/admin/healthcheck':
+    get:
+      description: 'Υποστηρίζει τη μέθοδο GET και επιβεβαιώνει τη συνδεσιμότητα (end-to-end
+        connectivity) μεταξύ του χρήστη και της βάσης δεδομένων. Το back-end, δηλαδή,
+        θα πρέπει να ελέγξει τη συνδεσιμότητα με τη ΒΔ για να απαντήσει στο αίτημα.
+        Σε περίπτωση επιτυχούς σύνδεσης επιστρέφεται το json object: {"status":"OK",
+        "dbconnection":[connection string]}, διαφορετικά επιστρέφεται {"status":"failed",
+        "dbconnection":[connection string]}. Στο connection string περιέχεται ό,τι
+        απαιτείται για τη ΒΔ της επιλογής σας.'
+      operationId: rEST_healthcheck
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_healthcheckResponse'
+              example: "{\r\n\t\"status\": \"OK\",\r\n\t\"dbState\": mongoose.STATES[mongoose.connection.readyState],\r\
+                \n\t\"dbconnection\":  mongoose.connections[0]._connectionString,\r\
+                \n\t\r\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/HealthcheckError'
+              example: "{\r\n\t\"status\": \"Failed\",\r\n\t\"dbState\": mongoose.STATES[mongoose.connection.readyState],\r\
+                \n\t\"dbconnection\":  mongoose.connections[0]._connectionString\r\
+                \n}"
+  '{baseURL}/admin/questionnaire_upd':
+    post:
+      description: Υποστηρίζει την http μέθοδο POST για το ανέβασμα αρχείου JSON με
+        δεδομένα ενός νέου ερωτηματολογίου. Στην http κλήση το αρχείο πρέπει να είναι
+        κωδικοποιημένο ως πεδίο "file" σε multipart/form-data κωδικοποίηση. Η απαιτούμενη
+        δομή του αρχείου JSON δίνεται στο παράρτημα.
+      operationId: rEST_questionnaire_upd
+      x-codegen-request-body-name: rest_questionnaire_updrequest
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/REST_questionnaire_updRequest'
+            example: "{\r\n \t\"questionnaireID\": \"QQ000\",\r\n \t\"questionnairTitle\"\
+              : \"My first research questionnaire\",\r\n \t\"keywords\": [\r\n \t\t\
+              \"footbal\",\r\n \t\t\"islands\",\r\n \t\t\"timezone\"\r\n \t\t],\r\n\
+              \ \t\"questions\": [\r\n\t{\r\n \t\t\"qID \": \"P00\",\r\n \t\t\"qtext\"\
+              : \"Ποιο είναι το mail σας;\",\r\n \t\t\"required\": \"FALSE\",\r\n\
+              \ \t\t\"type\": \"profile\",\r\n \t\t\"options\": [{\r\n \t\t\t\"optID\"\
+              : \"P00TXT\",\r\n \t\t\t\"opttxt\": \"<open string>\",\r\n \t\t\t\"\
+              nextqID\": \"P01\"\r\n \t\t}]},\r\n\t\t{\r\n\t\t\t\"qID \": \"P01\"\
+              ,\r\n\t\t\t \"qtext\": \"Ποια είναι η ηλικία σας;\",\r\n\t\t\t \"required\"\
+              : \"TRUE\",\r\n\t\t\t \"type\": \"profile\",\r\n \t\t\t\"options\":\
+              \ [\r\n\t\t\t{\r\n \t\t\t\t\"optID\": \"P01A1\",\r\n \t\t\t\t\"opttxt\"\
+              : \"<30\",\r\n \t\t\t\t\"nextqID\": \"Q01\"\r\n\t\t\t},\r\n\t\t\t{\r\
+              \n \t\t\t\t\"optID\": \"P01A2\",\r\n \t\t\t\t\"opttxt\": \"30-50\",\r\
+              \n \t\t\t\t\"nextqID\": \"Q01\"\r\n\t\t\t},\r\n\t\t\t {\r\n \t\t\t\t\
+              \"optID\": \"P01A3\",\r\n \t\t\t\t\"opttxt\": \"50-70\",\r\n\t\t\t\t\
+              \ \"nextqID\": \"Q01\"\r\n \t\t\t},\r\n \t\t\t{\r\n \t\t\t\t\"optID\"\
+              : \"P01A4\",\r\n \t\t\t\t\"opttxt\": \">70\",\r\n \t\t\t\t\"nextqID\"\
+              : \"Q01\"\r\n \t\t\t}\r\n\t\t\t]}]}"
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_questionnaire_updResponse'
+              example: "{\n\t\"id\": questionnaire._id,\n                      \t\"\
+                save\" : \"Successfully Saved Questionnaire\"\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/questionnaire_updError'
+              example: "{\r\n\t\"state\": \"Failed\",\r\n       \t\"reason\": err\r\
+                \n}"
+  '{baseURL}/admin/resetall':
+    post:
+      description: 'Υποστηρίζει τη μέθοδο POST και προβαίνει σε αρχικοποίηση όλων
+        των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια, απαντήσεις και χρήστες,
+        εφόσον υπάρχουν). Σε περίπτωση επιτυχίας, επιστρέφεται το json object: {"status":"OK"},
+        διαφορετικά επιστρέφεται {"status":"failed", "reason":"...>} με πληροφορία
+        σχετικά με την αποτυχία'
+      operationId: rEST_resetall
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_resetallResponse'
+              example: "{\r\n\t\"state\": 'OK',\r\n          \t\"usersDeleted\": 22,\r\
+                \n         \t\"questionnairesDeleted\": 13,\r\n          \t\"sessionsDeleted\"\
+                : 15\r\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Resetall_400_Error'
+              example: "{\n\t\"state\": \"Failed\",\n        \t\"reason\": err\n}"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Resetall_404_Error'
+              example: "{\r\n\t\"error\": err\r\n}"
+  '{baseURL}/admin/resetq/:questionnaireID':
+    post:
+      description: 'Υποστηρίζει τη μέθοδο POST και προβαίνει σε διαγραφή όλων των
+        απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID. Σε περίπτωση
+        επιτυχίας, επιστρέφεται το json object: {"status":"OK"}, διαφορετικά επιστρέφεται
+        {"status":"failed", "reason":"...>} με πληροφορία σχετικά με την αποτυχία
+        στο πεδίο reason.'
+      operationId: rEST_resetq/:questionnaireID
+      parameters:
+      - name: questionnaireID
+        in: header
+        required: false
+        schema:
+          type: string
+        example: /api/admin/resetq/:historytest_5th_grade
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_resetq/:questionnaireIDResponse'
+              example: "{\r\n\t\"state\": 'OK',\r\n      \t\"info\": `Answers have\
+                \ been deleted for Questionnaire with id: ${req.params.questionnaireID}`\r\
+                \n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/resetqError'
+              example: "{\r\n\t\"state\": 'Failed',\r\n          \t\"reason\": err\r\
+                \n}"
+  '{baseURL}/admin/usermod/:username/:password':
+    post:
+      description: Υποστηρίζει την http μέθοδο POST για την προσθήκη νέου χρήστη ή
+        την αλλαγή password αν ο χρήστης υπάρχει ήδη
+      operationId: rEST_usermod/:username/:password
+      parameters:
+      - name: username
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Για αλλαγή κωδικού του χρήστη, δηλαδή όταν το req.params.username
+            υπάρχει στη βάση δεδομένων.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_usermod/:username/:passwordResponse_2'
+              example: "//σε περίτπωση αλλαγής κωδικού\n{\n\t\"passwordChanged\":\
+                \ \"OK\",\n          \t\"username\": \"mike\",\n          \t\"newPassword\"\
+                : \"12345678\"\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/usermodError'
+              example: "{\r\n\t\"state\": \"Failed\",\r\n        \t\"reason\": err\r\
+                \n}"
+  '{baseURL}/admin/users/:username':
+    get:
+      description: Υποστηρίζει την http μέθοδο GET για την ανάγνωση των στοιχείων
+        ενός χρήστη.
+      operationId: rEST_/users/:username
+      parameters:
+      - name: username
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/users/:usernameResponse'
+              example: "// if user is found\r\n{\r\n\t\"userFound\": \"OK\",\r\n \
+                \       \tusername: user.username,\r\n       \tpassword: user.password,\r\
+                \n        \trole: user.role,\r\n       \tid: user._id\r\n}\r\n\r\n\
+                // if user is not found\r\n{\r\n\t\"userFound\": \"Failed\",\r\n \
+                \       \t\"reason\": \"User Not Found\"\r\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/users_400_Error'
+              example: "{\n\t\"state\": \"Failed\",\n      \t\"reason\": err\n}"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/users_404_Error'
+              example: "{\r\n\t\"userFound\": \"Failed\",\r\n\t\"reason\": \"User\
+                \ Not Found\"\r\n}"
+  '{baseURL}/doanswer/:questionnaireID/:questionID/:session/:optionID':
+    post:
+      description: 'Κλήση http POST η οποία καταχωρεί την απάντηση optionID η οποία
+        δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου
+        questionnaireID. Δεν επιστρέφει κάποιο αντικείμενο. Το αναγνωριστικό session
+        είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός
+        απάντησης του ερωτηματολογίου (προσοχή: όχι της ερώτησης) από κάποιον χρήστη.'
+      operationId: rEST_/doanswer/:questionnaireID/:questionID/:session/:optionID
+      parameters:
+      - name: questionnaireID
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: questionID
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: session
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '"0001"'
+      - name: optionID
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/doanswer/:questionnaireID/:questionID/:session/:optionIDResponse'
+              example: "// if modified\r\n{\r\n    \"acknowledged\": true,\r\n   \
+                \ \"modifiedCount\": 1,\r\n    \"upsertedId\": null,\r\n    \"upsertedCount\"\
+                : 0,\r\n    \"matchedCount\": 1\r\n}\r\n\r\n//if not modified\r\n\
+                // if modified\r\n{\r\n    \"acknowledged\": true,\r\n    \"modifiedCount\"\
+                : 0,\r\n    \"upsertedId\": null,\r\n    \"upsertedCount\": 0,\r\n\
+                \    \"matchedCount\": 1\r\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/doanswer_400_Error'
+              example: "{\r\n\t\"state\": 'Failed',\r\n      \t\"reason\": err\r\n\
+                }"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/doanswer_404_Error'
+              example: "{\n    \t\"state\": \"Failed\",\n    \t\"reason\": \"Check\
+                \ the given parameters. No session was found\"\n}"
+  '{baseURL}/getquestionanswers/:questionnaireID/:questionID':
+    get:
+      description: Κλήση http GET η οποία επιστρέφει object που περιέχει τις απαντήσεις
+        που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις
+        είναι ταξινομημένες ως προς τη σειρά με την οποία δόθηκαν.
+      operationId: rEST_/getquestionanswers/:questionnaireID/:questionID
+      parameters:
+      - name: questionnaireID
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: questionID
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/getquestionanswers/:questionnaireID/:questionIDResponse'
+              example: "{\r\n\t \"questionnaireID\": \"QQ000\",\r\n\t \"questionID\
+                \ \": \"P01\",\r\n\t \"answers\": [\r\n\t{\t\r\n\t\t\"session\": \"\
+                0001\",\r\n\t\t\"ans\": \"P01A1\"\r\n\t},\r\n\t{\r\n\t\t\"session\
+                \ \": \"0002\",\r\n\t\t\"ans\": \"P01A2\"\r\n\t},\r\n\t{\r\n\t\t\"\
+                session \": \"0003\",\r\n\t\t\"ans\": \"P01A2\"\r\n\t}\r\n\t] \r\n\
+                \ }"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/getquestionanswers_400_Error'
+              example: "{\r\n\t\"state\": \"Failed\",\r\n      \t\"reason\": err\r\
+                \n}"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/getquestionanswers_404_Error'
+              example: "{\n    \t\"state\": \"Failed\",\n    \t\"reason\": \"Session\
+                \ not found\"\n}"
+  '{baseURL}/getsessionanswers/:questionnaireID/:session':
+    get:
+      description: Κλήση http GET η οποία επιστρέφει object που περιέχει τις απαντήσεις
+        που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά
+        το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το
+        αναγνωριστικό της ερώτησης.
+      operationId: rEST_/getsessionanswers/:questionnaireID/:session
+      parameters:
+      - name: questionnaireID
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: session
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '"0001"'
+      responses:
+        200:
+          description: To πεδίο ans είναι το αναγνωριστικό της απάντησης που δόθηκε
+            κατά το γεγονός απάντησης session.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/getsessionanswers/:questionnaireID/:sessionResponse'
+              example: "{\r\n\t \"questionnaireID\": \"QQ000\",\r\n\t \"session \"\
+                : \"0001\",\r\n\t \"answers\": [\r\n\t{\t\"qID\": \"P00\",\r\n\t\t\
+                \"ans\": \"P00TXT\"\r\n\t},\r\n\t{\r\n\t\t\"qID \": \"P01\",\r\n\t\
+                \t\"ans\": \"P01A2\"\r\n\t}\r\n\t] \r\n }"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/getsessionanswers_400_Error'
+              example: "{\r\n\t\"state\": \"Failed\",\r\n     \t\"reason\": err\r\n\
+                }"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/getsessionanswers_404_Error'
+              example: "{\n    \t\"state\": \"Failed\",\n    \t\"reason\": \"Session\
+                \ not found\"\n}"
+  '{baseURL}/login':
+    post:
+      description: 'Υποστηρίζει την http μέθοδο POST και λαμβάνει τις παραμέτρους
+        username, password του χρήστη κωδικοποιημένους ως "application/x-www-formurlencoded".
+        Σε περίπτωση επιτυχούς διαπίστευσης του χρήστη, επιστρέφει ένα json object
+        με το token αυτού: {πχ "token":"FOO"}'
+      operationId: rEST_Login
+      x-codegen-request-body-name: rest_loginrequest
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/REST_LoginRequest'
+            example: "{\r\n\t\"username\" : \"mikenew\"\r\n\t\"password\" : \"12345678\r\
+              \n}\r\n"
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_LoginResponse'
+              example: "{\r\n\t\"token\" : \"ghhtdgiug47vryj676ADED3256\"\r\n}"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoginError'
+              example: "{\n\t\"error\": err\n}"
+        404:
+          description: Response body returns error occured
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoginError'
+              example: "{\r\n\t\"error\": err\r\n}"
+  '{baseURL}/logout':
+    post:
+      description: 'Υποστηρίζει την http μέθοδο POST και δε λαμβάνει παραμέτρους (ΠΡΟΣΟΧΗ:
+        το token του χρήστη που πρέπει να αποσυνδεθεί θα περιέχεται στον ειδικό γι’
+        αυτό το σκοπό custom HTTP header, όπως αναφέρθηκε παραπάνω). Σε περίπτωση
+        επιτυχίας, επιστρέφει μόνο το status code 200 (empty response body).'
+      operationId: rEST_Logout
+      responses:
+        200:
+          description: Empty Response body
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_LogoutResponse'
+              example: "{\r\n\t\r\n}"
+        400:
+          description: Response body returns error occured
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LogoutError'
+              example: "{\r\n\t\"error\":err\r\n}"
+        401:
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LogoutError'
+              example: "{\n\t\"error\":err\n}"
+  '{baseURL}/question/:questionnaireID/:questionID':
+    get:
+      description: Κλήση http GET η οποία επιστρέφει object που περιέχει τα πλήρη
+        στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές
+        της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της
+        απάντησης
+      operationId: rEST_/question/:questionnaireID/:questionID
+      parameters:
+      - name: questionnaireID
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: questionID
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/question/:questionnaireID/:questionIDResponsestring'
+              example: "{\r\n\t \"questionnaireID\": \"QQ000\",\r\n\t \"qID \": \"\
+                P01\",\r\n\t \"qtext\": \"Ποια είναι η ηλικία σας;\",\r\n\t \"required\"\
+                : \"TRUE\",\r\n\t \"type\": \"profile\",\r\n\t \"options\": [\r\n\
+                \ \t{\r\n \t\t\"optID\": \"P01A1\",\r\n\t\t \"opttxt\": \"<30\",\r\
+                \n\t\t \"nextqID\": \"Q01\"\r\n \t},\r\n\t{\r\n\t\t \"optID\": \"\
+                P01A2\",\r\n \t\t\"opttxt\": \"30-50\",\r\n\t\t \"nextqID\": \"Q01\"\
+                \r\n\t },\r\n \t{\r\n\t\t \"optID\": \"P01A3\",\r\n \t\t\"opttxt\"\
+                : \"50-70\",\r\n \t\t\"nextqID\": \"Q01\"\r\n \t},\r\n \t{\r\n\t\t\
+                \ \"optID\": \"P01A4\",\r\n\t\t \"opttxt\": \">70\",\r\n\t\t \"nextqID\"\
+                : \"Q01\"\r\n\t }\r\n \t]\r\n }"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/question_400_Error'
+              example: "{\r\n\t\"state\": \"Failed To Find Questionnaire\",\r\n  \
+                \    \t\"reason\": err\r\n}"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/question_404_Error'
+              example: "{\n    \t\"state\": \"Failed\",\n   \t\"reason\": \"Check\
+                \ the given parameters. No questionnaire was found\"\n}"
+  '{baseURL}/questionnaire/:questionnaireID':
+    get:
+      description: Κλήση http GET η οποία επιστρέφει object που περιέχει τα γενικά
+        στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID,
+        ταξινομημένες ως προς το αναγνωριστικό της ερώτησης
+      operationId: rEST_/questionnaire/:questionnaireID
+      parameters:
+      - name: questionnaireID
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/REST_/questionnaire/:questionnaireIDResponse'
+              example: "{\r\n\t \"questionnaireID\": \"QQ000\",\r\n\t \"questionnaireTitle\"\
+                : \"My first research questionnaire\",\r\n \t\"keywords\": [ \"footbal\"\
+                , \"islands\", \"timezone\"],\r\n\t \"questions\": [\r\n\t{\r\n\t\t\
+                \ \"qID \": \"P00\",\r\n\t\t \"qtext\": \"Ποιο είναι το mail σας;\"\
+                ,\r\n \t\t\"required\": \"FALSE\",\r\n \t\t\"type\": \"profile\"\r\
+                \n\t},\r\n\t{\r\n \t\t\"qID \": \"P01\",\r\n\t\t \"qtext\": \"Ποια\
+                \ είναι η ηλικία σας;\",\r\n\t\t \"required\": \"TRUE\",\r\n\t\t \"\
+                type\": \"profile\"\r\n\t}\r\n\t]\r\n}\r\n\t"
+        400:
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/questionnaire_400_Error'
+              example: "{\n\t\"state\": \"Failed To Find Questionnaire\",\n      \t\
+                \"reason\": err\n}"
+        404:
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/questionnaire_404_Error'
+              example: "{\r\n    \"state\": \"No questionnaire with id QQ01011 was\
+                \ found.\"\r\n}"
+components:
+  schemas:
+    REST_usermod/:username/:passwordResponse_2:
+      type: object
+      properties:
+        passwordChanged:
+          type: string
+        username:
+          type: string
+        newPassword:
+          type: string
+    getsessionanswers_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    users_404_Error:
+      type: object
+      properties:
+        userFound:
+          type: string
+        reason:
+          type: string
+    questionnaire_updError:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    REST_LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    REST_/question/:questionnaireID/:questionIDResponsestring:
+      type: object
+      properties:
+        questionnaireID:
+          type: string
+          description: Το αναγνωριστικό του ερωτηματολογίου.
+        qID:
+          type: string
+          description: Το αναγνωριστικό της ερώτησης.
+        qtext:
+          type: string
+          description: Το κείμενο της ερώτησης.
+        required:
+          type: string
+          description: '"true" ή "false". Δεν είναι required αυτή η παράμετρος από
+            τη βάση δεδομένων.'
+        type:
+          type: string
+          description: '"question" ή "profile". Δεν είναι required αυτή η παράμετρος
+            από τη βάση δεδομένων.'
+        options:
+          type: string
+          description: 'Λίστα με τις επιλογές. Kάθε λίστα περιέχει ένα JSON αρχείο
+            και κάθε JSON αρχείο περιλαμβάνει τα στοιχεία: optID, opttxt, nextqID'
+        optID:
+          type: string
+          description: Το αναγνωριστικό της απάντησης.
+        opttxt:
+          type: string
+          description: Το κείμενο της απάντησης.
+        nextqID:
+          type: string
+          description: Το αναγνωριστικό της επόμενης ερώτησης.
+    REST_/users/:usernameResponse:
+      type: object
+      properties:
+        userFound:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+        id:
+          type: string
+    getquestionanswers_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    REST_healthcheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        dbState:
+          type: string
+        dbconnection:
+          type: string
+    getquestionanswers_404_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: string
+    question_404_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: string
+    LogoutError:
+      type: object
+      properties:
+        error:
+          type: string
+    doanswer_404_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: string
+    HealthcheckError:
+      type: object
+    LoginError:
+      type: object
+      properties:
+        error:
+          type: string
+    REST_usermod/:username/:passwordResponse_1:
+      type: object
+      properties:
+        userCreated:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+    getsessionanswers_404_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: string
+    REST_resetallResponse:
+      type: object
+      properties:
+        state:
+          type: string
+        usersDeleted:
+          type: integer
+          format: int32
+        questionnairesDeleted:
+          type: integer
+          format: int32
+        sessionsDeleted:
+          type: integer
+          format: int32
+    REST_resetq/:questionnaireIDResponse:
+      type: object
+      properties:
+        state:
+          type: string
+        info:
+          type: string
+    usermodError:
+      type: object
+    question_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    Resetall_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    questionnaire_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    REST_questionnaire_updRequest:
+      type: object
+      properties:
+        questionnaire:
+          type: json
+    resetqError:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    REST_/getquestionanswers/:questionnaireID/:questionIDResponse:
+      type: object
+      properties:
+        questionnaireID:
+          type: string
+          description: Το αναγνωριστικό του ερωτηματολογίου.
+        questionID:
+          type: string
+          description: Το αναγνωριστικό της ερώτησης.
+        answers:
+          type: string
+          description: Λίστα από JSON objects. Κάθε JSON object περιλαμβάνει το session
+            και την απάντηση που δόθηκε σε αυτό το session.
+        session:
+          type: string
+        ans:
+          type: string
+    users_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err
+    REST_LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    questionnaire_404_Error:
+      type: object
+      properties:
+        state:
+          type: string
+    REST_/questionnaire/:questionnaireIDResponse:
+      type: object
+      properties:
+        questionnaireID:
+          type: string
+          description: Το αναγνωριστικό του ερωτηματολογίου.
+        questionnaireTitle:
+          type: string
+          description: O τίτλος του ερωτηματολογίου.
+        keywords:
+          type: list
+          description: Λίστα με λέξεις-κλειδιά. Κάθε λέξη-κλειδί είναι ένα string.
+            Δεν είναι required από τη βάση δεδομένων.
+        questions:
+          type: string
+          description: 'Λίστα με ερωτήσεις. Για κάθε ερώτηση ένα JSON object που περιέχει
+            τα ακόλουθα: qID, qtext, required, type.'
+        qID:
+          type: string
+          description: Το αναγνωριστικό της ερώτησης.
+        qtext:
+          type: string
+          description: Το κείμενο της ερώτησης.
+        required:
+          type: string
+          description: '"true" ή "false". Δεν είναι required αυτή η παράμετρος από
+            τη βάση δεδομένων.'
+        type:
+          type: string
+          description: '"question" ή "profile". Δεν είναι required αυτή η παράμετρος
+            από τη βάση δεδομένων.'
+    Resetall_404_Error:
+      type: object
+      properties:
+        error:
+          type: string
+    REST_questionnaire_updResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        save:
+          type: string
+    REST_/getsessionanswers/:questionnaireID/:sessionResponse:
+      type: object
+      properties:
+        questionnaireID:
+          type: string
+          description: Το αναγνωριστικό του ερωτηματολογίου.
+        session:
+          type: string
+          description: Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους
+            χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου.
+        answers:
+          type: string
+          description: Λίστα που περιέχει για κάθε ερώτηση με αναγνωριστικό qID τι
+            απάντηση δόθηκε.
+        qID:
+          type: string
+        ans:
+          type: string
+    REST_LogoutResponse:
+      type: object
+    REST_/doanswer/:questionnaireID/:questionID/:session/:optionIDResponse:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+        modifiedCount:
+          type: integer
+          format: int32
+        upsertedId:
+          type: null
+        upsertedCount:
+          type: integer
+          format: int32
+        matchedCount:
+          type: integer
+          format: int32
+    doanswer_400_Error:
+      type: object
+      properties:
+        state:
+          type: string
+        reason:
+          type: err

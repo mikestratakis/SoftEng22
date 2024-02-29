@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark coloredBgNoHover" style="height: 60px;">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse navbar-collapse-justify" id="navbarSupportedContent">
+		<img src="../assets/images/intelliq_logo_initial.png" alt="" style="margin-left: 30px;">
+		<ul class="navbar-nav m-auto">
+		<li [class.active]="isActive('admin')"  *ngIf="authService.isLoggedIn()" class="nav-item coloredBg"><a class="nav-link" href="#" [routerLink]="['/admin/home']"><b class="coloredTxt">Αρχική</b></a></li>
+		<!-- <li [class.active]="isActive('admin')" *ngIf="authService.isAdmin()" class="nav-item dropdown coloredBg">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<b class="coloredTxt">Διαχείριση</b>
+				</a>
+				<div class="dropdown-menu coloredBgNoHover" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item coloredBg" href="#" [routerLink]="['/admin/products']"><b class="coloredTxt">Καφέδες</b></a>
+				  <a class="dropdown-item coloredBg" href="#" [routerLink]="['/admin/shops']"><b class="coloredTxt">Καφετέριες</b></a>
+				  <a class="dropdown-item coloredBg" href="#" [routerLink]="['/admin/edit-price']"><b class="coloredTxt">Τιμές καφέδων</b></a>
+				</div>
+		</li> -->
+		</ul>
+
+		<ul class="navbar-nav m-auto">
+			<li class="nav-item" *ngIf = "authService.isLoggedIn()"><a class="nav-link no-select"><b class="coloredTxtNoHover">Καλώς ήρθατε, {{authService.User.username}}</b></a></li>
+			<li [class.active]="isActive('about')" class="nav-item coloredBg"><a class="nav-link" href="#" [routerLink]="['/about']"><b class="coloredTxt">Η Ομάδα μας</b></a></li>
+			<li class="nav-item coloredBg" *ngIf = "!authService.isLoggedIn()"><a class="nav-link" [routerLink]="['/login']"><b class="coloredTxt">Σύνδεση/Εγγραφή</b></a></li>
+			<li class="nav-item coloredBg" *ngIf = "authService.isLoggedIn()"><a class="nav-link" (click) = "authService.logout()" [routerLink]="['/login']"><b class="coloredTxt">Αποσύνδεση</b></a></li>
+		</ul>
+	</div>
+</nav>
+<router-outlet></router-outlet>

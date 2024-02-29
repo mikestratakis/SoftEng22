@@ -1,0 +1,114 @@
+
+.grey-background {
+  margin-top: 20px;
+ background-color: #eeeeee;
+ justify-content: center;
+ align-items: center;
+}
+
+
+.back-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+}
+.back{
+    position: fixed;
+    z-index: -100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #eee;
+}
+
+
+.card img {
+    border-radius: 50%;
+}
+
+.container {
+    height: 70vh;
+}
+
+.card-deck > .card {
+    margin-right: 40px;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row {
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    
+    margin-top: 10px;
+    padding-top: 30px;
+  
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #0d6efd;
+  }
+  
+  /* Responsive columns - one column layout (vertical) on small screens */
+
+  @media screen and (max-width: 768px) {
+    .column {
+      width: 70%;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .row {margin-top: 500px;}
+
+    // .back{
+    //     z-index: -100;
+    //     top: 0;
+    //     left: 0;
+    //     height: 100%;
+    //     width: 100%;
+    //     background-color: #eee;
+    //     position: fixed;
+    // }
+    
+  }
+
+  @media screen and (max-width: 425px) {
+    .column {
+      width: 70%;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .row {margin-top: 1350px;}
+
+    .back{
+        z-index: -100;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #eee;
+        position: fixed;
+    }
+}

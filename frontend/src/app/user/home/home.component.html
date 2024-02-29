@@ -1,0 +1,45 @@
+
+
+<div class="row">
+
+<mat-tab-group mat-align-tabs="center" [(selectedIndex)]="demo1TabIndex">
+    <mat-tab label="Εμφάνιση Ερωτηματολογίου">
+        <div class="container" *ngIf="openForm()">
+            <form #surveyForm="ngForm">
+                <mat-card class="example-card" *ngFor="let question of getQuestion(stepNum);let i = index;">
+                <mat-card-header style="display:flex;flex-direction:column;">
+                    <mat-card-title style="color: black">{{counterQuestion}}.{{question.value.qtext}}</mat-card-title>
+                    <mat-card-subtitle style="margin-top:20px">Απαντήσεις</mat-card-subtitle>
+                </mat-card-header>
+
+                    <mat-radio-group>
+                    <div class="answer" *ngFor="let y of question.value.options; let k = index">
+                    
+                        <mat-radio-button color="primary" [value]="y.opttxt" [checked]="y.optvalue" (change)="answerChange(stepNum-1,k)">
+                            {{y.opttxt}}
+                        </mat-radio-button>
+                    
+                    </div>
+                    </mat-radio-group>
+
+                    
+                
+
+
+                <mat-card-actions>
+                    <button class="btn btn-info"  mat-button *ngIf="!isFirst()" (click)="goPrev()" [disabled]="">PREVIOUS</button>
+                    <button class="btn btn-success"  style="float:right;" *ngIf="(isLast());else nextBtn" (click)="onSubmit()">SUBMIT</button>
+                    <ng-template #nextBtn>
+                    <button class="btn next-btn" mat-button style="float:right;" (click)="goNext()">NEXT</button>
+                    </ng-template>
+                </mat-card-actions>
+
+                <!-- <app-footer [index]="i" [total]="questions.length"></app-footer> -->
+                </mat-card>
+            </form>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>    
+</div>
+    

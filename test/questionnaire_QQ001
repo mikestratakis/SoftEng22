@@ -1,0 +1,234 @@
+{
+"questionnaireID": "QQ001",
+"questionnaireTitle": "My 1st fashion questionnaire from cli",
+"keywords": [
+"fashion"
+],
+"questions": [
+{
+"qID": "P01",
+"qtext": "Ποια είναι η ηλικία σας;",
+"required": "TRUE",
+"type": "profile",
+"options": [
+{
+"optID": "P01A1",
+"opttxt": "18-29",
+"nextqID": "Q01"
+},
+{
+"optID": "P01A2",
+"opttxt": "30-41",
+"nextqID": "Q01"
+},
+{
+"optID": "P01A3",
+"opttxt": "42-53",
+"nextqID": "Q01"
+},
+{
+"optID": "P01A4",
+"opttxt": "53+",
+"nextqID": "Q01"
+}
+]
+},
+{
+"qID": "Q01",
+"qtext": "Ποιο είναι το φύλο σας;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q01A1",
+"opttxt": "Γυναίκα",
+"nextqID": "Q02"
+},
+{
+"optID": "Q01A2",
+"opttxt": "Άνδρας",
+"nextqID": "Q03"
+}
+]
+},
+{
+"qID": "Q02",
+"qtext": "Πόσο σημαντικό ρόλο παίζει για σένα η ενδυμασία;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q02A1",
+"opttxt": "Πάρα πολύ",
+"nextqID": "Q04"
+},
+{
+"optID": "Q02A2",
+"opttxt": "Πολύ",
+"nextqID": "Q04"
+},
+{
+"optID": "Q02A3",
+"opttxt": "Ελάχιστα",
+"nextqID": "Q05"
+},
+{
+"optID": "Q02A4",
+"opttxt": "Καθόλου",
+"nextqID": "Q05"
+}
+]
+},
+{
+"qID": "Q03",
+"qtext": "Ποια είναι η σχέση σου με τις αλλαγές στον κόσμο της μόδας;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q03A1",
+"opttxt": "Ενημερώνομαι συνεχώς και ακολουθώ τις τάσεις της μόδας",
+"nextqID": "Q04"
+},
+{
+"optID": "Q03A2",
+"opttxt": "Με ενδιαφέρουν οι τάσεις αλλά δεν τις ακολουθώ πιστά",
+"nextqID": "Q05"
+},
+{
+"optID": "Q03A3",
+"opttxt": "Δεν ενδιαφέρομαι για τυχόν αλλαγές στο χώρο της μόδας.",
+"nextqID": "Q05"
+}
+]
+},
+{
+"qID": "Q04",
+"qtext": "Καθημερινά πόση περίπου ώρα ασχολείσαι με την εμφάνισή σου;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q04A1",
+"opttxt": "Κάτω από μισή ώρα",
+"nextqID": "Q05"
+},
+{
+"optID": "Q04A2",
+"opttxt": "Το πολύ μία ώρα",
+"nextqID": "Q05"
+},
+{
+"optID": "Q04A3",
+"opttxt": "Πάνω από δύο ώρες",
+"nextqID": "Q05"
+}
+]
+},
+{
+"qID": "Q05",
+"qtext": "Με ποιον κυρίως τρόπο ενημερώνεσαι για τις νέες τάσεις της μόδας;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q05A1",
+"opttxt": "Περιοδικά",
+"nextqID": "Q06"
+},
+{
+"optID": "Q05A2",
+"opttxt": "Τηλεόραση",
+"nextqID": "Q06"
+},
+{
+"optID": "Q05A3",
+"opttxt": "Διαδίκτυο",
+"nextqID": "Q06"
+},
+{
+"optID": "Q05A4",
+"opttxt": "Βιτρίνες καταστημάτων",
+"nextqID": "Q06"
+},
+{
+"optID": "Q05A5",
+"opttxt": "Δεν ενημερώνομαι",
+"nextqID": "Q06"
+}
+]
+},
+{
+"qID": "Q06",
+"qtext": "Θα φορούσες κάτι που είναι στη μόδα αλλά δεν σου αρέσει ιδιαίτερα;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q06A1",
+"opttxt": "Ναι",
+"nextqID": "Q07"
+},
+{
+"optID": "Q06A2",
+"opttxt": "Οχι",
+"nextqID": "Q08"
+}
+]
+},
+{
+"qID": "Q07",
+"qtext": "Θα ξόδευες όλο το χαρτζιλίκι σου για να αγοράσεις κάτι που σου αρέσει πολύ;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q07A1",
+"opttxt": "Nαι",
+"nextqID": "Q09"
+},
+{
+"optID": "Q07A2",
+"opttxt": "Όχι",
+"nextqID": "Q09"
+}
+]
+},
+{
+"qID": "Q08",
+"qtext": "Έχει επηρεάσει η οικονομική κρίση την ενδυμασία σου;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q08A1",
+"opttxt": "Ναι",
+"nextqID": "Q09"
+},
+{
+"optID": "Q08A2",
+"opttxt": "Οχι",
+"nextqID": "Q09"
+}
+]
+},
+{
+"qID": "Q09",
+"qtext": "Ο τρόπος με τον οποίο ντύνονται οι γύρω σου αποτελεί κριτήριο για  να τους εντάξεις στην παρέα σου;",
+"required": "TRUE",
+"type": "question",
+"options": [
+{
+"optID": "Q09A1",
+"opttxt": "Ναι",
+"nextqID": "SUBMIT"
+},
+{
+"optID": "Q09A2",
+"opttxt": "Όχι",
+"nextqID": "SUBMIT"
+}
+]
+}
+]
+}

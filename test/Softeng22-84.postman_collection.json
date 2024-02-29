@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "98455763-00b4-43f8-9dd1-32494f3444dd",
+		"name": "Softeng22-84",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24471597"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"mikenew\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaire_upd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"questionnaireID\": \"QQ001\",\n\"questionnaireTitle\": \"My 1st fashion questionnaire from postman\",\n\"keywords\": [\n\"fashion\"\n],\n\"questions\": [\n{\n\"qID\": \"P01\",\n\"qtext\": \"Ποια είναι η ηλικία σας;\",\n\"required\": \"TRUE\",\n\"type\": \"profile\",\n\"options\": [\n{\n\"optID\": \"P01A1\",\n\"opttxt\": \"18-29\",\n\"nextqID\": \"Q01\"\n},\n{\n\"optID\": \"P01A2\",\n\"opttxt\": \"30-41\",\n\"nextqID\": \"Q01\"\n},\n{\n\"optID\": \"P01A3\",\n\"opttxt\": \"42-53\",\n\"nextqID\": \"Q01\"\n},\n{\n\"optID\": \"P01A4\",\n\"opttxt\": \"53+\",\n\"nextqID\": \"Q01\"\n}\n]\n},\n{\n\"qID\": \"Q01\",\n\"qtext\": \"Ποιο είναι το φύλο σας;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q01A1\",\n\"opttxt\": \"Γυναίκα\",\n\"nextqID\": \"Q02\"\n},\n{\n\"optID\": \"Q01A2\",\n\"opttxt\": \"Άνδρας\",\n\"nextqID\": \"Q03\"\n}\n]\n},\n{\n\"qID\": \"Q02\",\n\"qtext\": \"Πόσο σημαντικό ρόλο παίζει για σένα η ενδυμασία;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q02A1\",\n\"opttxt\": \"Πάρα πολύ\",\n\"nextqID\": \"Q04\"\n},\n{\n\"optID\": \"Q02A2\",\n\"opttxt\": \"Πολύ\",\n\"nextqID\": \"Q04\"\n},\n{\n\"optID\": \"Q02A3\",\n\"opttxt\": \"Ελάχιστα\",\n\"nextqID\": \"Q05\"\n},\n{\n\"optID\": \"Q02A4\",\n\"opttxt\": \"Καθόλου\",\n\"nextqID\": \"Q05\"\n}\n]\n},\n{\n\"qID\": \"Q03\",\n\"qtext\": \"Ποια είναι η σχέση σου με τις αλλαγές στον κόσμο της μόδας;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q03A1\",\n\"opttxt\": \"Ενημερώνομαι συνεχώς και ακολουθώ τις τάσεις της μόδας\",\n\"nextqID\": \"Q04\"\n},\n{\n\"optID\": \"Q03A2\",\n\"opttxt\": \"Με ενδιαφέρουν οι τάσεις αλλά δεν τις ακολουθώ πιστά\",\n\"nextqID\": \"Q05\"\n},\n{\n\"optID\": \"Q03A3\",\n\"opttxt\": \"Δεν ενδιαφέρομαι για τυχόν αλλαγές στο χώρο της μόδας.\",\n\"nextqID\": \"Q05\"\n}\n]\n},\n{\n\"qID\": \"Q04\",\n\"qtext\": \"Καθημερινά πόση περίπου ώρα ασχολείσαι με την εμφάνισή σου;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q04A1\",\n\"opttxt\": \"Κάτω από μισή ώρα\",\n\"nextqID\": \"Q05\"\n},\n{\n\"optID\": \"Q04A2\",\n\"opttxt\": \"Το πολύ μία ώρα\",\n\"nextqID\": \"Q05\"\n},\n{\n\"optID\": \"Q04A3\",\n\"opttxt\": \"Πάνω από δύο ώρες\",\n\"nextqID\": \"Q05\"\n}\n]\n},\n{\n\"qID\": \"Q05\",\n\"qtext\": \"Με ποιον κυρίως τρόπο ενημερώνεσαι για τις νέες τάσεις της μόδας;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q05A1\",\n\"opttxt\": \"Περιοδικά\",\n\"nextqID\": \"Q06\"\n},\n{\n\"optID\": \"Q05A2\",\n\"opttxt\": \"Τηλεόραση\",\n\"nextqID\": \"Q06\"\n},\n{\n\"optID\": \"Q05A3\",\n\"opttxt\": \"Διαδίκτυο\",\n\"nextqID\": \"Q06\"\n},\n{\n\"optID\": \"Q05A4\",\n\"opttxt\": \"Βιτρίνες καταστημάτων\",\n\"nextqID\": \"Q06\"\n},\n{\n\"optID\": \"Q05A5\",\n\"opttxt\": \"Δεν ενημερώνομαι\",\n\"nextqID\": \"Q06\"\n}\n]\n},\n{\n\"qID\": \"Q06\",\n\"qtext\": \"Θα φορούσες κάτι που είναι στη μόδα αλλά δεν σου αρέσει ιδιαίτερα;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q06A1\",\n\"opttxt\": \"Ναι\",\n\"nextqID\": \"Q07\"\n},\n{\n\"optID\": \"Q06A2\",\n\"opttxt\": \"Οχι\",\n\"nextqID\": \"Q08\"\n}\n]\n},\n{\n\"qID\": \"Q07\",\n\"qtext\": \"Θα ξόδευες όλο το χαρτζιλίκι σου για να αγοράσεις κάτι που σου αρέσει πολύ;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q07A1\",\n\"opttxt\": \"Nαι\",\n\"nextqID\": \"Q09\"\n},\n{\n\"optID\": \"Q07A2\",\n\"opttxt\": \"Όχι\",\n\"nextqID\": \"Q09\"\n}\n]\n},\n{\n\"qID\": \"Q08\",\n\"qtext\": \"Έχει επηρεάσει η οικονομική κρίση την ενδυμασία σου;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q08A1\",\n\"opttxt\": \"Ναι\",\n\"nextqID\": \"Q09\"\n},\n{\n\"optID\": \"Q08A2\",\n\"opttxt\": \"Οχι\",\n\"nextqID\": \"Q09\"\n}\n]\n},\n{\n\"qID\": \"Q09\",\n\"qtext\": \"Ο τρόπος με τον οποίο ντύνονται οι γύρω σου αποτελεί κριτήριο για  να τους εντάξεις στην παρέα σου;\",\n\"required\": \"TRUE\",\n\"type\": \"question\",\n\"options\": [\n{\n\"optID\": \"Q09A1\",\n\"opttxt\": \"Ναι\",\n\"nextqID\": \"SUBMIT\"\n},\n{\n\"optID\": \"Q09A2\",\n\"opttxt\": \"Όχι\",\n\"nextqID\": \"SUBMIT\"\n}\n]\n}\n]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/questionnaire_upd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"questionnaire_upd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetq/:questionnaireID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/resetq/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"resetq",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin/usermod/:username/:password/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/usermod/:username/:password/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"usermod",
+						":username",
+						":password",
+						""
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "mikenew"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin/users/:username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/users/:username",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"users",
+						":username"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "mikenew"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/admin/resetall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/resetall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"resetall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShowUsers(extra)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/showusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"showusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin/resetallquestions(extra)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/resetallquestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"resetallquestions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetonequestionnaire (extra)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/resetonequestionnaire/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"resetonequestionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show_all_questionnaires(extra)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/show_all_questionnaires",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"show_all_questionnaires"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin/showsessions(extra)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/showsessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"showsessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin/session_upd(extra)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"questionnaireID\": \"QQ001\",\n\t\"session\": \"4WER\",\n\t\"answers\":[\n\t{\"qID\": \"P01\",\n\t\"ans\": \"P01A1\"\n\t},\n\t{\"qID\": \"Q01\",\n\t\"ans\": \"Q01A1\"\n\t},\n\t{\"qID\": \"Q03\",\n\t\"ans\": \"Q03A2\"\n\t},\n\t{\"qID\": \"Q05\",\n\t\"ans\": \"Q05A3\"\n\t},\n\t{\"qID\": \"Q06\",\n\t\"ans\": \"Q06A2\"\n\t},\n\t{\"qID\": \"Q08\",\n\t\"ans\": \"Q08A1\"\n\t},\n\t{\"qID\": \"Q09\",\n\t\"ans\": \"Q09A2\"\n\t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/admin/session_upd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"session_upd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaires/:questionnaireID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/questionnaires/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"questionnaires",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "question/:questionnaireID/:questionID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/question/:questionnaireID/:questionID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q04"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "doanswer/:questionnaireID/:questionID/:session/:optionID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "P01"
+						},
+						{
+							"key": "session",
+							"value": "4WER"
+						},
+						{
+							"key": "optionID",
+							"value": "P01A2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getsessionanswers/:questionnaireID/:session",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/getsessionanswers/:questionnaireID/:session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "session",
+							"value": "4WER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getquestionanswers/:questionnaireID/:questionID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/getquestionanswers/:questionnaireID/:questionID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/adminshow_one_questionnaire/:questionnaireID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/admin/show_one_questionnaire/:questionnaireID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"admin",
+						"show_one_questionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

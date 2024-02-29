@@ -1,0 +1,162 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  }
+
+.coloredBg{
+  background-color: #e9ecef  !important;
+}
+
+.coloredBg:hover:not([disabled]){
+  background-color: #eee !important;
+}
+
+.custom-fa{
+  color: #ffc107 !important;
+}
+.custom-fa:hover{
+  color: #fdda6e !important;
+}
+
+.coloredBg-rev{
+  background-color: #eee !important;
+}
+
+.coloredBg-rev:hover{
+  background-color: #eee !important;
+}
+
+.custom-fa-rev{
+  color: #eee !important;
+}
+.custom-fa-rev:hover{
+  color: #eee !important;
+}
+
+.bgbutton a{
+  color: #ffc107 !important;
+  background-color: #683b12 !important;
+  border-color: #ffc107 !important;
+}
+
+.bgbutton a:hover{
+  color: #eee !important;
+  background-color: #eee !important;
+  border-color: #eee !important;
+}
+
+.bgbutton a:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border:2px solid #eee !important;
+}
+
+.no-focus:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+.coloredBgNoHover{
+  background-color: #eee !important;
+}
+
+.coloredBgNoHover-rev{
+  background-color: #eee !important;
+}
+
+.coloredTxt{
+  color: #0d6efd !important;/* 845e3a */
+}
+.coloredTxt:hover:not([disabled]){
+  color: #0d6efd !important;/*683b12*/
+}
+.coloredTxtNoHover{
+  color: #ffc107 !important;/* 845e3a */
+}
+
+.dropdown-toggle{
+  color: #ffc107 !important;
+}
+.dropdown-toggle:hover{
+  color: #fdda6e !important;/*683b12*/
+}
+
+#toast-container > div {
+  opacity:1;
+  margin-top: 10px;
+}
+
+.back-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+///modal scss
+.popupModal>.modal-dialog {
+   
+  min-width: 730px !important;
+  max-height: 602px !important;
+ 
+  @media screen and (max-width: 780px) {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: unset !important;
+      margin: 0;
+      padding: 0;
+      // width: 100% !important;
+  }
+  .modal-content {
+      position: relative;
+      display: flex;
+      height: 133px;
+      background-color: #badbcc;
+      flex-direction: column;
+      width: 100%;
+      pointer-events: auto;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: none;
+      border-radius: 0;
+      outline: 0;
+      box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.15);
+      background-color: rgb(255, 255, 255);
+      @media screen and (max-width: 780px) {
+          margin-top: 600px;
+          height: auto;
+          min-height: 100%;
+          width: 100vw;
+      }
+      @media screen and (max-width: 500px) {
+          margin-top: 885px;
+      }
+  }
+
+  .modal-header{
+    background-color: #badbcc;
+  }
+  .modal-container {
+      .close{
+          display: none;
+      }
+      @media screen and (max-width: 780px) {
+          width: 100vw;
+      }
+  }
+}
+  

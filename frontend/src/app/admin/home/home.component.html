@@ -1,0 +1,51 @@
+
+<div class="container grey-background">
+
+<mat-grid-list cols=2 #grid rowHeight="515px" gutterSize="15px">
+    
+    <mat-grid-tile>
+        <mat-card class="settings-card">
+            <mat-card-title class="cardTitle">
+            Δημιουργία Νέας Φόρμας Ερωτηματολογίου
+            </mat-card-title>
+            <mat-card-content>
+            <div>
+                <div class="d-flex justify-content-center mt-5">
+                    <a class="btn login_btn" [routerLink]="['/admin/createsurvey']">Σύνδεση</a>
+                </div>
+            </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="settings-card">
+            <mat-card-title class="cardTitle">
+            Γράφημα με απαντήσεις ανα ερώτηση
+            </mat-card-title>
+            <mat-card-content>
+            <div>
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn login_btn" [routerLink]="['/admin/statistics']">Σύνδεση</button>
+                </div>
+            </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <!-- <mat-grid-tile>
+        <mat-card class="settings-card">
+            <mat-card-title class="cardTitle">
+           Στατιστική ανάλυση Απαντήσεων
+            </mat-card-title>
+            <mat-card-content>
+            <div>
+                <div class="d-flex justify-content-center mt-5">
+                    <a class="btn login_btn" [routerLink]="['/admin/createsurvey']">Σύνδεση</a>
+                </div>
+            </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile> -->
+</mat-grid-list>
+
+</div>
+  
