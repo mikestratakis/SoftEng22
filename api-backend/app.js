@@ -15,6 +15,8 @@ const cors = require('cors');
 require('./models/session')
 
 
+// σε αυτό το σημείο γίνεται χρήση mongoose, προφανώς παρακάτω χρειάζεται αλλαγή στα στοιχεία της βάσης για νέα χρήση του project
+
 mongoose
   .connect(
     "mongodb+srv://gkit:eBEHaH%402i3%40xpVZ@cluster0.rmvpre9.mongodb.net/softeng_22_84"

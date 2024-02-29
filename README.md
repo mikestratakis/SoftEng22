@@ -3,8 +3,8 @@
 Group: SoftEng22-84
 
 ## Members: <br/>
-&emsp;Κίτσος Γεώργιος Α.Μ: el04768<br/>
-&emsp;Στρατάκης Μιχαήλ Α.Μ: el17503 <br/>
+&emsp;Κίτσος Γεώργιος <br/>
+&emsp;Στρατάκης Μιχαήλ<br/>
 
 ## Technologies
 
@@ -21,4 +21,7 @@ API DOC -> Visual Paradigm
 ### Testing
 Node 16.10<br/>
 Python3<br/>
+
+### H παρούσα εργασία έλαβε μέρος το έτος 2022-2023 για το μάθημα Τεχνολογία Λογισμικού
+
 
