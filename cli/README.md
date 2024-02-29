@@ -26,6 +26,7 @@ After the project have been cloned from github follow the instructions below to 
 - Execute: <ins>npm i axios</ins> => to install axios library
 - Execute: <ins>npm install node-localstorage</ins> => to install localstorage library
 - Execute: <ins>npm install jsonwebtoken --save</ins> => to install jsonwebtoken library
+- In case operation is rejection due to administrator issues add sudo in front of the commands
 
 ## CLI Documentation
 After the above have been executed run in terminal: <ins>se2284</ins> to view the available commands and examples.<br>
