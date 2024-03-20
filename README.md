@@ -27,6 +27,6 @@ API DOC -> Visual Paradigm
 Node 16.10<br/>
 Python3<br/>
 
-### This project took place in the year 2022-2023 for the Software Technology course, in the department of Electrical Engineering and Mechanical Computing (NTUA)
+### This project took place in the year 2022-2023 for the Software Technology course, at National Technical University of Athens department of Electrical and Computer Engineering.
 
 
